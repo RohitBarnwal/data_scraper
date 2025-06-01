@@ -1,0 +1,21 @@
+services:
+  - type: cron
+    name: dhan-stock-scraper
+    runtime: python
+    plan: free
+    schedule: "0 18 * * *"  # Runs daily at 18:00 UTC (adjust time as needed)
+    buildCommand: pip install -r requirements.txt
+    startCommand: python dhan_scraper.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - key: SENDER_EMAIL
+        sync: false  # This means you'll set it manually in Render dashboard
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: RECIPIENT_EMAIL
+        sync: false
+      - key: GOOGLE_CHROME_BIN
+        value: /usr/bin/google-chrome-stable
+      - key: CHROMEDRIVER_PATH
+        value: /usr/local/bin/chromedriver 
