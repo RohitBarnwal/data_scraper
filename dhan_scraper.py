@@ -216,10 +216,6 @@ class DhanStockScraper:
                 else:
                     scroll_attempts = 0  # Reset attempts counter if we got new content
                 
-                # Save screenshot periodically for debugging
-                if current_stock_count % 50 == 0:
-                    self.driver.save_screenshot(f"scroll_{current_stock_count}_stocks.png")
-                
                 # Update last height
                 last_height = new_height
                 
