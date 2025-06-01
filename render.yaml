@@ -1,11 +1,10 @@
 services:
-  - type: cron
+  - type: web
     name: dhan-stock-scraper
     runtime: python
     plan: free
-    schedule: "0 18 * * *"  # Runs daily at 18:00 UTC (adjust time as needed)
     buildCommand: pip install -r requirements.txt
-    startCommand: python dhan_scraper.py
+    startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
